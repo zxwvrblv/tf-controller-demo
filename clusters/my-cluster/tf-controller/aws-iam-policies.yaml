@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 30s
-  url: https://github.com/tf-controller/aws-iam-policies
+  url: https://github.com/zxwvrblv/aws-iam-policies
   ref:
     branch: main
 ---
@@ -17,7 +17,7 @@ metadata:
 spec:
   approvePlan: "auto"
   interval: 1m
-  path: ./
+  path: ./policies
   sourceRef:
     kind: GitRepository
     name: aws-iam-policies
