@@ -1,0 +1,31 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: aws-iam-policies
+  namespace: flux-system
+spec:
+  interval: 30s
+  url: https://github.com/tf-controller/aws-iam-policies
+  ref:
+    branch: main
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: aws-iam-policies-ks
+  namespace: flux-system
+spec:
+  prune: true
+  approvePlan: "auto"
+  interval: 2m
+  path: "./infra"
+  sourceRef:
+    kind: GitRepository
+    name: aws-iam-policies
+  timeout: 3m
+  healthChecks:
+  - apiVersion: infra.contrib.fluxcd.io/v1alpha1
+    kind: Terraform
+    name: iam-policy
+    namespace: flux-system
