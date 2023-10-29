@@ -26,5 +26,5 @@ spec:
   - name: cluster_name
     value: karpenter
   varsFrom:
-    kind: Secret
+  - kind: Secret
     name: aws-credentials
